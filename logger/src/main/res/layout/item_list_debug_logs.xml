@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="10dp"
+    app:cardBackgroundColor="#ffffff"
+    app:cardCornerRadius="6dp"
+    app:cardElevation="2dp"
+    app:contentPadding="10dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <!--标签-->
+        <TextView
+            android:id="@+id/tagText"
+            style="@style/text_copy"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:textColor="#3b3b3b"
+            android:textSize="14sp" />
+
+        <!--日志内容-->
+        <TextView
+            android:id="@+id/msgText"
+            style="@style/text_copy"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:gravity="left|top"
+            android:textColor="#3b3b3b"
+            android:textSize="14sp" />
+
+        <!--日志异常内容-->
+        <TextView
+            android:id="@+id/extraMsgText"
+            style="@style/text_copy"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:gravity="left|top"
+            android:textColor="#FF0006"
+            android:textSize="14sp" />
+
+    </LinearLayout>
+
+</android.support.v7.widget.CardView>
