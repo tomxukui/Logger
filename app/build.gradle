@@ -7,8 +7,8 @@ android {
         applicationId "com.ablingbling.app.logger"
         minSdkVersion rootProject.ext.android.minSdkVersion
         targetSdkVersion rootProject.ext.android.targetSdkVersion
-        versionCode 2
-        versionName "1.1"
+        versionCode 200
+        versionName "2.0.0"
     }
 
     buildTypes {
