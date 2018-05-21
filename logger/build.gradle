@@ -23,10 +23,8 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation rootProject.ext.dependencies["appcompat-v7"]
-    implementation rootProject.ext.dependencies["recyclerview-v7"]
-    implementation rootProject.ext.dependencies["cardview-v7"]
-
-    //RecyclerView的Adapter https://github.com/CymChad/BaseRecyclerViewAdapterHelper
-    implementation 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.38'
+    compileOnly rootProject.ext.dependencies["appcompat-v7"]
+    compileOnly rootProject.ext.dependencies["recyclerview-v7"]
+    compileOnly rootProject.ext.dependencies["cardview-v7"]
+    compileOnly 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.38'
 }
