@@ -41,8 +41,10 @@ public class DebugLogManagerActivity extends AppCompatActivity implements BaseQu
 
             if (date1.before(date2)) {
                 return 1;
+
             } else if (date1.after(date2)) {
                 return -1;
+
             } else {
                 return 0;
             }
@@ -96,15 +98,13 @@ public class DebugLogManagerActivity extends AppCompatActivity implements BaseQu
                     File file = files[i];
 
                     if (file != null && file.exists() && file.isFile()) {
-
                         LogFile logFile = new LogFile();
                         logFile.setFileName(file.getName());
                         logFile.setFilePath(file.getAbsolutePath());
-                        logFile.setDate(new Date(Long.parseLong(file.getName().replace(".log", ""))));
+                        logFile.setDate(new Date(Long.parseLong(file.getName().replace(".log", "").split("\\.")[0])));
 
                         logFiles.add(logFile);
                     }
-
                 }
             }
         }
