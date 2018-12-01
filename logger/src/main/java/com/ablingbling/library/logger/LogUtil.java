@@ -45,7 +45,7 @@ public class LogUtil {
                 LogConfigurator configurator = new LogConfigurator();
                 configurator.setFileName(mFolderPath + File.separator + System.currentTimeMillis() + ".log");
 
-                Log log = new Log("%p", "%c", "%C", "%d", "%m", "%r", "%t", "%l", null);
+                Log log = new Log("%p", "%c", "%C", "%d", "%m", "%t", "%l", null);
                 String filePattern = SPILT_START + GsonUtil.toJson(log) + SPILT_END;
                 configurator.setFilePattern(filePattern);
 

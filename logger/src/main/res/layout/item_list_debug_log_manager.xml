@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginBottom="10dp"
-    app:cardBackgroundColor="#ffffff"
+    app:cardBackgroundColor="@android:color/white"
     app:cardCornerRadius="6dp"
     app:cardElevation="2dp"
     app:contentPadding="10dp">
@@ -19,16 +19,16 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:textColor="#3b3b3b"
+            android:textColor="#1A1A1A"
             android:textSize="16sp" />
 
         <TextView
             android:id="@+id/dateText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
             android:layout_marginTop="5dp"
-            android:textColor="#3b3b3b"
+            android:layout_marginBottom="10dp"
+            android:textColor="#888888"
             android:textSize="13sp" />
 
     </LinearLayout>

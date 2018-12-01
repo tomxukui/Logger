@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginBottom="10dp"
-    app:cardBackgroundColor="#ffffff"
+    app:cardBackgroundColor="@android:color/white"
     app:cardCornerRadius="6dp"
     app:cardElevation="2dp"
     app:contentPadding="10dp">
@@ -21,8 +21,20 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="left"
-            android:textColor="#3b3b3b"
-            android:textSize="14sp" />
+            android:textColor="#1A1A1A"
+            android:textSize="15sp"
+            android:textStyle="bold" />
+
+        <!--时间-->
+        <TextView
+            android:id="@+id/tv_date"
+            style="@style/text_copy"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:layout_marginTop="5dp"
+            android:textColor="#888888"
+            android:textSize="11sp" />
 
         <!--日志内容-->
         <TextView
@@ -32,7 +44,6 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:gravity="left|top"
-            android:textColor="#3b3b3b"
             android:textSize="14sp" />
 
         <!--日志异常内容-->
@@ -43,7 +54,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:gravity="left|top"
-            android:textColor="#FF0006"
+            android:textColor="#FF4B4B"
             android:textSize="14sp" />
 
     </LinearLayout>

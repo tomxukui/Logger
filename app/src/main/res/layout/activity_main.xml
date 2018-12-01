@@ -11,17 +11,35 @@
         android:orientation="vertical">
 
         <Button
-            android:id="@+id/btn_logText"
+            android:id="@+id/btn_d_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="打印text" />
+            android:text="debug-text" />
 
         <Button
-            android:id="@+id/btn_logThrowable"
+            android:id="@+id/btn_info_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="info-text" />
+
+        <Button
+            android:id="@+id/btn_warn_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="warn-text" />
+
+        <Button
+            android:id="@+id/btn_error_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="error-text" />
+
+        <Button
+            android:id="@+id/btn_error_throwable"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:text="打印throwable" />
+            android:text="error-throwable" />
 
     </LinearLayout>
 

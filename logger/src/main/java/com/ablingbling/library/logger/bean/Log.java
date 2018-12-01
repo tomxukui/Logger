@@ -12,18 +12,16 @@ public class Log implements Serializable {
     private String className;
     private String date;
     private String msg;
-    private String duration;
     private String thread;
     private String position;
     private String throwable;
 
-    public Log(String method, String tag, String className, String date, String msg, String duration, String thread, String position, String throwable) {
+    public Log(String method, String tag, String className, String date, String msg, String thread, String position, String throwable) {
         this.method = method;
         this.tag = tag;
         this.className = className;
         this.date = date;
         this.msg = msg;
-        this.duration = duration;
         this.thread = thread;
         this.position = position;
         this.throwable = throwable;
@@ -70,14 +68,6 @@ public class Log implements Serializable {
 
     public void setMsg(String msg) {
         this.msg = msg;
-    }
-
-    public String getDuration() {
-        return duration;
-    }
-
-    public void setDuration(String duration) {
-        this.duration = duration;
     }
 
     public String getThread() {

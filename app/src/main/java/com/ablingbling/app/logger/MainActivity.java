@@ -19,20 +19,47 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         LogUtil.create();
 
-        findViewById(R.id.btn_logText).setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.btn_d_text).setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
-                LogUtil.e("dd", "日志text-" + System.currentTimeMillis());
+                LogUtil.d("dd", "btn_d_text-" + System.currentTimeMillis());
             }
 
         });
 
-        findViewById(R.id.btn_logThrowable).setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.btn_info_text).setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
-                LogUtil.e("dd", "日志throwable-" + System.currentTimeMillis(), new IOException());
+                LogUtil.i("dd", "btn_info_text-" + System.currentTimeMillis());
+            }
+
+        });
+
+        findViewById(R.id.btn_warn_text).setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                LogUtil.w("dd", "btn_warn_text-" + System.currentTimeMillis());
+            }
+
+        });
+
+        findViewById(R.id.btn_error_text).setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                LogUtil.e("dd", "btn_error_text-" + System.currentTimeMillis());
+            }
+
+        });
+
+        findViewById(R.id.btn_error_throwable).setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                LogUtil.e("dd", "btn_error_throwable-" + System.currentTimeMillis(), new IOException());
             }
 
         });
