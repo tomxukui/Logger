@@ -37,32 +37,30 @@ public class LogUtil {
      */
     public static void create() {
         if (mEnableLog) {
-            if (TextUtils.isEmpty(mFolderPath)) {
-                throw new NullPointerException();
+            if (!TextUtils.isEmpty(mFolderPath)) {
+                LogConfigurator configurator = new LogConfigurator();
+                configurator.setFileName(mFolderPath + File.separator + System.currentTimeMillis() + ".log");
+
+                StringBuffer sb = new StringBuffer();
+                sb.append(Spilt_group);
+                sb.append("%p");
+                sb.append(Spilt_child);
+                sb.append("%c");
+                sb.append(Spilt_child);
+                sb.append("%C");
+                sb.append(Spilt_child);
+                sb.append("%d");
+                sb.append(Spilt_child);
+                sb.append("%m");
+                sb.append(Spilt_child);
+                sb.append("%t");
+                configurator.setFilePattern(sb.toString());
+
+                configurator.setLogCatPattern("%m%n");
+                configurator.setRootLevel(Level.ALL);
+                configurator.setLevel("org.apache", Level.ERROR);
+                configurator.configure();
             }
-
-            LogConfigurator configurator = new LogConfigurator();
-            configurator.setFileName(mFolderPath + File.separator + System.currentTimeMillis() + ".log");
-
-            StringBuffer sb = new StringBuffer();
-            sb.append(Spilt_group);
-            sb.append("%p");
-            sb.append(Spilt_child);
-            sb.append("%c");
-            sb.append(Spilt_child);
-            sb.append("%C");
-            sb.append(Spilt_child);
-            sb.append("%d");
-            sb.append(Spilt_child);
-            sb.append("%m");
-            sb.append(Spilt_child);
-            sb.append("%t");
-            configurator.setFilePattern(sb.toString());
-
-            configurator.setLogCatPattern("%m%n");
-            configurator.setRootLevel(Level.ALL);
-            configurator.setLevel("org.apache", Level.ERROR);
-            configurator.configure();
         }
     }
 
