@@ -16,6 +16,9 @@ import de.mindpipe.android.logging.log4j.LogConfigurator;
 
 public class LogUtil {
 
+    public static final String SPILT_START = "_@#x@k#@_";
+    public static final String SPILT_END = "_@#x_k#@_";
+
     public static boolean mEnableLog = true;
     public static String mFolderPath;
 
@@ -42,8 +45,8 @@ public class LogUtil {
                 LogConfigurator configurator = new LogConfigurator();
                 configurator.setFileName(mFolderPath + File.separator + System.currentTimeMillis() + ".log");
 
-                Log log = new Log("%p", "%c", "%C", "%d", "%m", "%t");
-                String filePattern = GsonUtil.toJson(log) + ",";
+                Log log = new Log("%p", "%c", "%C", "%d", "%m", "%r", "%t", "%l", null);
+                String filePattern = SPILT_START + GsonUtil.toJson(log) + SPILT_END;
                 configurator.setFilePattern(filePattern);
 
                 configurator.setLogCatPattern("%m%n");

@@ -9,6 +9,8 @@ import android.view.View;
 import com.ablingbling.library.logger.LogUtil;
 import com.ablingbling.library.logger.ui.DebugLogManagerActivity;
 
+import java.io.IOException;
+
 public class MainActivity extends AppCompatActivity {
 
     @Override
@@ -17,11 +19,20 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         LogUtil.create();
 
-        findViewById(R.id.btn_log).setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.btn_logText).setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
-                LogUtil.e("dd", "这是一条日志-" + System.currentTimeMillis());
+                LogUtil.e("dd", "日志text-" + System.currentTimeMillis());
+            }
+
+        });
+
+        findViewById(R.id.btn_logThrowable).setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                LogUtil.e("dd", "日志throwable-" + System.currentTimeMillis(), new IOException());
             }
 
         });

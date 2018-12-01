@@ -23,6 +23,9 @@ import java.util.Collections;
 import java.util.List;
 import java.util.TimeZone;
 
+import static com.ablingbling.library.logger.LogUtil.SPILT_END;
+import static com.ablingbling.library.logger.LogUtil.SPILT_START;
+
 /**
  * Created by tom on 2016/7/21.
  */
@@ -64,20 +67,44 @@ public class DebugLogsActivity extends AppCompatActivity {
     }
 
     private List<Log> getLogs() {
+        List<Log> logs = new ArrayList<>();
+
         String content = readFile(mLogFile.getFilePath(), "utf-8");
 
         if (!TextUtils.isEmpty(content)) {
-            if (content.endsWith(",")) {
-                content = content.substring(0, content.length() - 1);
+            if (content.startsWith(SPILT_START)) {
+                content = content.substring(SPILT_START.length(), content.length());
             }
 
-            List<Log> logs = GsonUtil.listFromJson("[" + content + "]", Log.class);
-            Collections.reverse(logs);
-            return logs;
+            String[] parts = content.split(SPILT_START);
 
-        } else {
-            return new ArrayList<>();
+            if (parts != null) {
+                for (String part : parts) {
+                    if (!TextUtils.isEmpty(part)) {
+                        String[] childs = part.split(SPILT_END);
+
+                        if (childs != null && childs.length > 0) {
+                            String text = childs[0];
+                            String throwable = (childs.length > 1 ? childs[1] : null);
+
+                            if (!TextUtils.isEmpty(text)) {
+                                Log log = GsonUtil.fromJson(text, Log.class);
+
+                                if (!TextUtils.isEmpty(throwable)) {
+                                    log.setThrowable(throwable);
+                                }
+
+                                logs.add(log);
+                            }
+                        }
+                    }
+                }
+            }
+
+            Collections.reverse(logs);
         }
+
+        return logs;
     }
 
     /**
