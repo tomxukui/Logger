@@ -29,7 +29,7 @@ public class LogUtil {
         mEnableLog = enable;
         mFolderPath = folderPath;
 
-//        CrashUtil.getInstance().init();
+        CrashUtil.getInstance().init();
     }
 
     /**

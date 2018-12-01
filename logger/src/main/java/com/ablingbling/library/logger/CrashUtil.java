@@ -1,5 +1,7 @@
 package com.ablingbling.library.logger;
 
+import android.os.AsyncTask;
+
 import java.lang.Thread.UncaughtExceptionHandler;
 
 /**
@@ -31,8 +33,20 @@ public class CrashUtil implements UncaughtExceptionHandler {
 
     @Override
     public void uncaughtException(Thread thread, Throwable ex) {
-        LogUtil.e(TAG, "未捕获的异常", ex);
+        new LogTask().execute(ex);
         uncaughtExceptionHandler.uncaughtException(thread, ex);
+    }
+
+    public class LogTask extends AsyncTask<Throwable, Void, Void> {
+
+        @Override
+        protected Void doInBackground(Throwable... throwables) {
+            for (Throwable t : throwables) {
+                LogUtil.e(TAG, "未捕获的异常", t);
+            }
+            return null;
+        }
+
     }
 
 }
