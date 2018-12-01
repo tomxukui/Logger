@@ -16,7 +16,7 @@
 
         <!--标签-->
         <TextView
-            android:id="@+id/tagText"
+            android:id="@+id/tv_tag"
             style="@style/text_copy"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -26,7 +26,7 @@
 
         <!--日志内容-->
         <TextView
-            android:id="@+id/msgText"
+            android:id="@+id/tv_msg"
             style="@style/text_copy"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -37,7 +37,7 @@
 
         <!--日志异常内容-->
         <TextView
-            android:id="@+id/extraMsgText"
+            android:id="@+id/tv_throwable"
             style="@style/text_copy"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

@@ -5,25 +5,25 @@ import java.io.Serializable;
 /**
  * Created by tom on 2016/8/2.
  */
-public class LogField implements Serializable {
+public class Log implements Serializable {
 
     private String method;
     private String tag;
     private String className;
     private String date;
     private String msg;
-    private String throwableMsg;
+    private String throwable;
 
-    public LogField() {
-    }
-
-    public LogField(String method, String tag, String className, String date, String msg, String throwableMsg) {
+    public Log(String method, String tag, String className, String date, String msg, String throwable) {
         this.method = method;
         this.tag = tag;
         this.className = className;
         this.date = date;
         this.msg = msg;
-        this.throwableMsg = throwableMsg;
+        this.throwable = throwable;
+    }
+
+    public Log() {
     }
 
     public String getMethod() {
@@ -66,11 +66,12 @@ public class LogField implements Serializable {
         this.msg = msg;
     }
 
-    public String getThrowableMsg() {
-        return throwableMsg;
+    public String getThrowable() {
+        return throwable;
     }
 
-    public void setThrowableMsg(String throwableMsg) {
-        this.throwableMsg = throwableMsg;
+    public void setThrowable(String throwable) {
+        this.throwable = throwable;
     }
+
 }

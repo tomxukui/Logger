@@ -26,5 +26,6 @@ dependencies {
     compileOnly rootProject.ext.dependencies["appcompat-v7"]
     compileOnly rootProject.ext.dependencies["recyclerview-v7"]
     compileOnly rootProject.ext.dependencies["cardview-v7"]
+    compileOnly 'com.google.code.gson:gson:2.8.5'
     compileOnly 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.38'
 }

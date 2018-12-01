@@ -4,7 +4,7 @@ import android.graphics.Color;
 import android.widget.TextView;
 
 import com.ablingbling.library.logger.R;
-import com.ablingbling.library.logger.bean.LogField;
+import com.ablingbling.library.logger.bean.Log;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 
@@ -12,27 +12,24 @@ import com.chad.library.adapter.base.BaseViewHolder;
  * Created by xukui on 2017/12/4.
  */
 
-public class DebugLogsAdapter extends BaseQuickAdapter<LogField, BaseViewHolder> {
+public class DebugLogsAdapter extends BaseQuickAdapter<Log, BaseViewHolder> {
 
     public DebugLogsAdapter() {
         super(R.layout.item_list_debug_logs);
     }
 
     @Override
-    protected void convert(BaseViewHolder helper, LogField item) {
-        TextView tagText = helper.getView(R.id.tagText);
-        TextView msgText = helper.getView(R.id.msgText);
-        TextView extraMsgText = helper.getView(R.id.extraMsgText);
+    protected void convert(BaseViewHolder helper, Log item) {
+        TextView tv_tag = helper.getView(R.id.tv_tag);
+        TextView tv_msg = helper.getView(R.id.tv_msg);
+        TextView tv_throwable = helper.getView(R.id.tv_throwable);
 
-        //设置【标签】
-        tagText.setText(item.getTag() + " " + item.getDate());
+        tv_tag.setText(item.getTag() + " " + item.getDate());
 
-        //设置【日志内容】
-        msgText.setText(formatJson(item.getMsg()));
-        msgText.setTextColor(getTextColor(item.getMethod()));
+        tv_msg.setText(formatJson(item.getMsg()));
+        tv_msg.setTextColor(getTextColor(item.getMethod()));
 
-        //设置【异常内容】
-        extraMsgText.setText(item.getThrowableMsg());
+        tv_throwable.setText(item.getThrowable());
     }
 
     private int getTextColor(String method) {

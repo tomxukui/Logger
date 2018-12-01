@@ -4,12 +4,13 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 
-import com.ablingbling.library.logger.LogUtil;
 import com.ablingbling.library.logger.R;
 import com.ablingbling.library.logger.adapter.DebugLogsAdapter;
-import com.ablingbling.library.logger.bean.LogField;
+import com.ablingbling.library.logger.bean.Log;
 import com.ablingbling.library.logger.bean.LogFile;
+import com.ablingbling.library.logger.util.GsonUtil;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -59,111 +60,58 @@ public class DebugLogsActivity extends AppCompatActivity {
         mAdapter = new DebugLogsAdapter();
         recyclerView.setAdapter(mAdapter);
 
-        mAdapter.setNewData(getLogFields());
+        mAdapter.setNewData(getLogs());
     }
 
-    private List<LogField> getLogFields() {
-        List<LogField> logFields = new ArrayList<>();
+    private List<Log> getLogs() {
+        String content = readFile(mLogFile.getFilePath(), "utf-8");
 
-        StringBuilder contentSb = readFile(mLogFile.getFilePath(), "utf-8");
-        if (contentSb != null) {
-            String content = contentSb.toString().trim();
-
-            if (content != null && content.length() > LogUtil.Spilt_group.length()) {
-                if (content.startsWith(LogUtil.Spilt_group)) {
-                    content = content.substring(LogUtil.Spilt_group.length(), content.length());
-                }
-
-                String[] groups = content.split(LogUtil.Spilt_group);
-
-                if (groups != null) {
-                    for (int i = 0; i < groups.length; i++) {
-                        LogField logField = new LogField();
-
-                        String[] childs = groups[i].trim().split(LogUtil.Spilt_child);
-                        for (int j = 0; j < childs.length; j++) {
-                            String item = childs[j];
-
-                            switch (j) {
-
-                                case 0: {//请求方式
-                                    logField.setMethod(item);
-                                }
-                                break;
-
-                                case 1: {//标签
-                                    logField.setTag(item);
-                                }
-                                break;
-
-                                case 2: {//包名
-                                    logField.setClassName(item);
-                                }
-                                break;
-
-                                case 3: {//日志时间
-                                    logField.setDate(item);
-                                }
-                                break;
-
-                                case 4: {//日志内容
-                                    logField.setMsg(item);
-                                }
-                                break;
-
-                                case 5: {//异常内容
-                                    logField.setThrowableMsg(item);
-                                }
-                                break;
-
-                                default:
-                                    break;
-
-                            }
-
-                        }
-
-                        logFields.add(logField);
-                    }
-
-                    Collections.reverse(logFields);
-                }
+        if (!TextUtils.isEmpty(content)) {
+            if (content.endsWith(",")) {
+                content = content.substring(0, content.length() - 1);
             }
-        }
 
-        return logFields;
+            List<Log> logs = GsonUtil.listFromJson("[" + content + "]", Log.class);
+            Collections.reverse(logs);
+            return logs;
+
+        } else {
+            return new ArrayList<>();
+        }
     }
 
     /**
      * 读取文件
      */
-    private StringBuilder readFile(String filePath, String charsetName) {
+    private String readFile(String filePath, String charsetName) {
         File file = new File(filePath);
-        StringBuilder fileContent = new StringBuilder("");
         if (file == null || !file.isFile()) {
             return null;
         }
 
+        String result = "";
         BufferedReader reader = null;
+
         try {
-            InputStreamReader is = new InputStreamReader(new FileInputStream(
-                    file), charsetName);
-            reader = new BufferedReader(is);
-            String line = null;
+            reader = new BufferedReader(new InputStreamReader(new FileInputStream(file), charsetName));
+            String line;
             while ((line = reader.readLine()) != null) {
-                if (!fileContent.toString().equals("")) {
-                    fileContent.append("\r\n");
+                if (!"".equals(result)) {
+                    result += "\r\n";
                 }
-                fileContent.append(line);
+                result += line;
             }
             reader.close();
-            return fileContent;
+            return result;
+
         } catch (IOException e) {
             throw new RuntimeException("IOException occurred. ", e);
+
         } finally {
             if (reader != null) {
                 try {
                     reader.close();
+
                 } catch (IOException e) {
                     throw new RuntimeException("IOException occurred. ", e);
                 }
