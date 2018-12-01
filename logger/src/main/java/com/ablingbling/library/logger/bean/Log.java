@@ -13,19 +13,7 @@ public class Log implements Serializable {
     private String date;
     private String msg;
     private String thread;
-    private String position;
     private String throwable;
-
-    public Log(String method, String tag, String className, String date, String msg, String thread, String position, String throwable) {
-        this.method = method;
-        this.tag = tag;
-        this.className = className;
-        this.date = date;
-        this.msg = msg;
-        this.thread = thread;
-        this.position = position;
-        this.throwable = throwable;
-    }
 
     public Log() {
     }
@@ -76,14 +64,6 @@ public class Log implements Serializable {
 
     public void setThread(String thread) {
         this.thread = thread;
-    }
-
-    public String getPosition() {
-        return position;
-    }
-
-    public void setPosition(String position) {
-        this.position = position;
     }
 
     public String getThrowable() {

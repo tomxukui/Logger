@@ -10,7 +10,6 @@ import com.ablingbling.library.logger.R;
 import com.ablingbling.library.logger.adapter.DebugLogsAdapter;
 import com.ablingbling.library.logger.bean.Log;
 import com.ablingbling.library.logger.bean.LogFile;
-import com.ablingbling.library.logger.util.GsonUtil;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -23,8 +22,8 @@ import java.util.Collections;
 import java.util.List;
 import java.util.TimeZone;
 
-import static com.ablingbling.library.logger.LogUtil.SPILT_END;
-import static com.ablingbling.library.logger.LogUtil.SPILT_START;
+import static com.ablingbling.library.logger.LogUtil.SPILT_CHILD;
+import static com.ablingbling.library.logger.LogUtil.SPILT_GROUP;
 
 /**
  * Created by tom on 2016/7/21.
@@ -72,30 +71,71 @@ public class DebugLogsActivity extends AppCompatActivity {
         String content = readFile(mLogFile.getFilePath(), "utf-8");
 
         if (!TextUtils.isEmpty(content)) {
-            if (content.startsWith(SPILT_START)) {
-                content = content.substring(SPILT_START.length(), content.length());
+            if (content.startsWith(SPILT_GROUP)) {
+                content = content.substring(SPILT_GROUP.length(), content.length());
             }
 
-            String[] parts = content.split(SPILT_START);
+            String[] groups = content.split(SPILT_GROUP);
 
-            if (parts != null) {
-                for (String part : parts) {
-                    if (!TextUtils.isEmpty(part)) {
-                        String[] childs = part.split(SPILT_END);
+            if (groups != null && groups.length > 0) {
+                for (String group : groups) {
+                    if (!TextUtils.isEmpty(group)) {
+                        if (group.endsWith(SPILT_CHILD)) {
+                            group = group.substring(0, group.length() - SPILT_CHILD.length());
+                        }
 
-                        if (childs != null && childs.length > 0) {
-                            String text = childs[0];
-                            String throwable = (childs.length > 1 ? childs[1] : null);
+                        String[] childs = group.split(SPILT_CHILD);
 
-                            if (!TextUtils.isEmpty(text)) {
-                                Log log = GsonUtil.fromJson(text, Log.class);
+                        if (childs != null) {
+                            Log log = new Log();
 
-                                if (!TextUtils.isEmpty(throwable)) {
-                                    log.setThrowable(throwable);
+                            for (int i = 0; i < childs.length; i++) {
+                                String str = childs[i];
+
+                                switch (i) {
+
+                                    case 0: {//请求方式
+                                        log.setMethod(str);
+                                    }
+                                    break;
+
+                                    case 1: {//标签
+                                        log.setTag(str);
+                                    }
+                                    break;
+
+                                    case 2: {//包名
+                                        log.setClassName(str);
+                                    }
+                                    break;
+
+                                    case 3: {//日志时间
+                                        log.setDate(str);
+                                    }
+                                    break;
+
+                                    case 4: {//日志内容
+                                        log.setMsg(str);
+                                    }
+                                    break;
+
+                                    case 5: {//线程
+                                        log.setThread(str);
+                                    }
+                                    break;
+
+                                    case 6: {//异常内容
+                                        log.setThrowable(str);
+                                    }
+                                    break;
+
+                                    default:
+                                        break;
+
                                 }
-
-                                logs.add(log);
                             }
+
+                            logs.add(log);
                         }
                     }
                 }
