@@ -6,30 +6,32 @@
     android:layout_marginBottom="10dp"
     app:cardBackgroundColor="@android:color/white"
     app:cardCornerRadius="6dp"
-    app:cardElevation="2dp"
-    app:contentPadding="10dp">
+    app:contentPaddingBottom="20dp"
+    app:contentPaddingLeft="10dp"
+    app:contentPaddingRight="10dp"
+    app:contentPaddingTop="20dp">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:gravity="left|center_vertical"
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/nameText"
+            android:id="@+id/tv_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
             android:textColor="#1A1A1A"
-            android:textSize="16sp" />
+            android:textSize="16sp"
+            android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/dateText"
+            android:id="@+id/tv_path"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
-            android:layout_marginBottom="10dp"
             android:textColor="#888888"
-            android:textSize="13sp" />
+            android:textSize="11sp" />
 
     </LinearLayout>
 

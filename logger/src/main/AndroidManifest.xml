@@ -6,17 +6,23 @@
         android:label="@string/app_name">
 
         <activity
-            android:name="com.ablingbling.library.logger.ui.DebugLogManagerActivity"
+            android:name=".ui.DebugLogManagerActivity"
             android:label="日志管理"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.Light.DarkActionBar"
-            android:windowSoftInputMode="adjustPan" />
+            android:windowSoftInputMode="stateHidden|adjustResize" />
 
         <activity
-            android:name="com.ablingbling.library.logger.ui.DebugLogsActivity"
+            android:name=".ui.DebugLogSourceActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.Light.DarkActionBar"
-            android:windowSoftInputMode="adjustPan" />
+            android:windowSoftInputMode="stateHidden|adjustResize" />
+
+        <activity
+            android:name=".ui.DebugLogsActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light.DarkActionBar"
+            android:windowSoftInputMode="stateHidden|adjustResize"/>
 
     </application>
 

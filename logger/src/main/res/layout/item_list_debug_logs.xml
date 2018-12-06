@@ -32,7 +32,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="left"
-            android:layout_marginTop="5dp"
             android:textColor="#888888"
             android:textSize="11sp" />
 
@@ -42,19 +41,8 @@
             style="@style/text_copy"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="5dp"
             android:gravity="left|top"
-            android:textSize="14sp" />
-
-        <!--日志异常内容-->
-        <TextView
-            android:id="@+id/tv_throwable"
-            style="@style/text_copy"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:gravity="left|top"
-            android:textColor="#FF4B4B"
             android:textSize="14sp" />
 
     </LinearLayout>

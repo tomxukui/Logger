@@ -1,5 +1,7 @@
 package com.ablingbling.library.logger.bean;
 
+import android.graphics.Color;
+
 import java.io.Serializable;
 
 /**
@@ -7,23 +9,53 @@ import java.io.Serializable;
  */
 public class Log implements Serializable {
 
-    private String method;
+    private String level;
     private String tag;
-    private String className;
     private String date;
     private String msg;
-    private String thread;
-    private String throwable;
 
-    public Log() {
+    public String getLevelName() {
+        if ("I".equals(level)) {
+            return "INFO";
+
+        } else if ("D".equals(level)) {
+            return "DEBUG";
+
+        } else if ("W".equals(level)) {
+            return "WARN";
+
+        } else if ("E".equals(level)) {
+            return "ERROR";
+
+        } else {
+            return "UNKOWN";
+        }
     }
 
-    public String getMethod() {
-        return method;
+    public int getLevelColor() {
+        if ("I".equals(level)) {
+            return Color.parseColor("#4C4C4C");
+
+        } else if ("D".equals(level)) {
+            return Color.parseColor("#3D8CFF");
+
+        } else if ("W".equals(level)) {
+            return Color.parseColor("#FDAF3D");
+
+        } else if ("E".equals(level)) {
+            return Color.parseColor("#FF4B4B");
+
+        } else {
+            return Color.parseColor("#1A1A1A");
+        }
     }
 
-    public void setMethod(String method) {
-        this.method = method;
+    public String getLevel() {
+        return level;
+    }
+
+    public void setLevel(String level) {
+        this.level = level;
     }
 
     public String getTag() {
@@ -32,14 +64,6 @@ public class Log implements Serializable {
 
     public void setTag(String tag) {
         this.tag = tag;
-    }
-
-    public String getClassName() {
-        return className;
-    }
-
-    public void setClassName(String className) {
-        this.className = className;
     }
 
     public String getDate() {
@@ -56,22 +80,6 @@ public class Log implements Serializable {
 
     public void setMsg(String msg) {
         this.msg = msg;
-    }
-
-    public String getThread() {
-        return thread;
-    }
-
-    public void setThread(String thread) {
-        this.thread = thread;
-    }
-
-    public String getThrowable() {
-        return throwable;
-    }
-
-    public void setThrowable(String throwable) {
-        this.throwable = throwable;
     }
 
 }

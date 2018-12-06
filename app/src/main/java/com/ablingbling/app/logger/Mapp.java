@@ -12,7 +12,7 @@ public class Mapp extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        LogUtil.init(true, FileHelper.getLogDir(this));
+        LogUtil.init(this, true, FileHelper.getLogDir(this));
     }
 
 }
