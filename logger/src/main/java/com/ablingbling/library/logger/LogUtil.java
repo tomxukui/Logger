@@ -33,15 +33,27 @@ public class LogUtil {
 
     /**
      * 在Application中初始化
+     *
+     * @param context    上下文
+     * @param enable     是否打印日志
+     * @param catchCrash 是否打印未捕获的异常(当开启打印日志时才有效), 建议不打印, 因为开启的话会忽略到一些异常而不会崩溃，让开发者无法察觉错误
+     * @param folderPath 存放日志的文件夹地址
      */
-    public static void init(Context context, boolean enable, String folderPath) {
+    public static void init(Context context, boolean enable, boolean catchCrash, String folderPath) {
         mEnableLog = enable;
         mFolderPath = folderPath;
 
         if (mEnableLog) {
             initLogger(context, folderPath);
-            CrashUtil.getInstance().init();
+
+            if (catchCrash) {
+                CrashUtil.getInstance().init();
+            }
         }
+    }
+
+    public static void init(Context context, boolean enable, String folderPath) {
+        init(context, enable, false, folderPath);
     }
 
     private static void initLogger(Context context, String folderPath) {
