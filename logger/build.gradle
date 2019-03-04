@@ -9,8 +9,8 @@ android {
     defaultConfig {
         minSdkVersion rootProject.ext.android.minSdkVersion
         targetSdkVersion rootProject.ext.android.targetSdkVersion
-        versionCode 302
-        versionName "3.0.2"
+        versionCode 303
+        versionName "3.0.3"
     }
 
     buildTypes {
@@ -25,7 +25,5 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     compileOnly rootProject.ext.dependencies["appcompat-v7"]
     compileOnly rootProject.ext.dependencies["recyclerview-v7"]
-    compileOnly rootProject.ext.dependencies["cardview-v7"]
-    compileOnly 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.38'
-    compileOnly 'com.github.pqpo:Log4a:v1.4.0'
+    implementation 'com.github.pqpo:Log4a:v1.4.0'
 }

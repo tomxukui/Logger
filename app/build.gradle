@@ -7,8 +7,8 @@ android {
         applicationId "com.ablingbling.app.logger"
         minSdkVersion rootProject.ext.android.minSdkVersion
         targetSdkVersion rootProject.ext.android.targetSdkVersion
-        versionCode 302
-        versionName "3.0.2"
+        versionCode 303
+        versionName "3.0.3"
     }
 
     buildTypes {
@@ -24,8 +24,5 @@ dependencies {
     implementation rootProject.ext.dependencies["appcompat-v7"]
     implementation rootProject.ext.dependencies["design"]
     implementation rootProject.ext.dependencies["recyclerview-v7"]
-    implementation rootProject.ext.dependencies["cardview-v7"]
-    implementation 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.38'
-    implementation 'com.github.pqpo:Log4a:v1.4.0'
     implementation project(':logger')
 }

@@ -8,12 +8,10 @@ import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 
 import com.ablingbling.library.logger.LogUtil;
 import com.ablingbling.library.logger.R;
 import com.ablingbling.library.logger.adapter.DebugLogManagerAdapter;
-import com.chad.library.adapter.base.BaseQuickAdapter;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -46,14 +44,12 @@ public class DebugLogManagerActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         listAdapter = new DebugLogManagerAdapter();
-        listAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
+        listAdapter.setOnItemClickListener(new DebugLogManagerAdapter.OnItemClickListener() {
 
             @Override
-            public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
-                File item = listAdapter.getItem(position);
-
+            public void onItemClick(int position, File file) {
                 Intent intent = new Intent(DebugLogManagerActivity.this, DebugLogsActivity.class);
-                intent.putExtra("LogFile", item);
+                intent.putExtra("LogFile", file);
                 startActivity(intent);
             }
 

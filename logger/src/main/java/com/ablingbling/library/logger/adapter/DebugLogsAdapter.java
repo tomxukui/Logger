@@ -1,32 +1,59 @@
 package com.ablingbling.library.logger.adapter;
 
+import android.support.annotation.NonNull;
+import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.ablingbling.library.logger.R;
 import com.ablingbling.library.logger.bean.Log;
-import com.chad.library.adapter.base.BaseQuickAdapter;
-import com.chad.library.adapter.base.BaseViewHolder;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by xukui on 2017/12/4.
  */
 
-public class DebugLogsAdapter extends BaseQuickAdapter<Log, BaseViewHolder> {
+public class DebugLogsAdapter extends RecyclerView.Adapter<DebugLogsAdapter.ViewHolder> {
+
+    private List<Log> mLogs;
 
     public DebugLogsAdapter() {
-        super(R.layout.item_list_debug_logs);
+        mLogs = new ArrayList<>();
     }
 
     @Override
-    protected void convert(BaseViewHolder helper, Log item) {
-        TextView tv_tag = helper.getView(R.id.tv_tag);
-        TextView tv_date = helper.getView(R.id.tv_date);
-        TextView tv_msg = helper.getView(R.id.tv_msg);
+    public int getItemCount() {
+        return mLogs.size();
+    }
 
-        tv_tag.setText(String.format("%s [%s]", item.getTag(), item.getLevelName()));
-        tv_date.setText(item.getDate());
-        tv_msg.setText(formatJson(item.getMsg()));
-        tv_msg.setTextColor(item.getLevelColor());
+    @NonNull
+    @Override
+    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_list_debug_logs, parent, false);
+        return new ViewHolder(view);
+    }
+
+    @Override
+    public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
+        final Log log = mLogs.get(position);
+
+        holder.tv_tag.setText(String.format("%s [%s]", log.getTag(), log.getLevelName()));
+        holder.tv_date.setText(log.getDate());
+        holder.tv_msg.setText(formatJson(log.getMsg()));
+        holder.tv_msg.setTextColor(log.getLevelColor());
+    }
+
+    public void setNewData(List<Log> logs) {
+        mLogs.clear();
+        if (logs != null) {
+            mLogs.addAll(logs);
+        }
+
+        notifyDataSetChanged();
     }
 
     /**
@@ -87,6 +114,21 @@ public class DebugLogsAdapter extends BaseQuickAdapter<Log, BaseViewHolder> {
             levelStr.append("\t\t");
         }
         return levelStr.toString();
+    }
+
+    static class ViewHolder extends RecyclerView.ViewHolder {
+
+        TextView tv_tag;
+        TextView tv_date;
+        TextView tv_msg;
+
+        public ViewHolder(View itemView) {
+            super(itemView);
+            tv_tag = itemView.findViewById(R.id.tv_tag);
+            tv_date = itemView.findViewById(R.id.tv_date);
+            tv_msg = itemView.findViewById(R.id.tv_msg);
+        }
+
     }
 
 }
