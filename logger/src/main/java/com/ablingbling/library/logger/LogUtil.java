@@ -117,6 +117,7 @@ public class LogUtil {
     public static void d(String tag, String msg) {
         if (mEnableLog) {
             Log4a.d(tag, msg);
+            Log4a.flush();
         }
     }
 
@@ -126,6 +127,7 @@ public class LogUtil {
     public static void i(String tag, String msg) {
         if (mEnableLog) {
             Log4a.i(tag, msg);
+            Log4a.flush();
         }
     }
 
@@ -135,18 +137,21 @@ public class LogUtil {
     public static void w(String tag, String msg, Throwable t) {
         if (mEnableLog) {
             Log4a.w(tag, msg, t);
+            Log4a.flush();
         }
     }
 
     public static void w(String tag, String msg) {
         if (mEnableLog) {
             Log4a.w(tag, msg);
+            Log4a.flush();
         }
     }
 
     public static void w(String tag, Throwable t) {
         if (mEnableLog) {
             Log4a.w(tag, t);
+            Log4a.flush();
         }
     }
 
@@ -156,18 +161,21 @@ public class LogUtil {
     public static void e(String tag, String msg, Throwable t) {
         if (mEnableLog) {
             Log4a.e(tag, msg, t);
+            Log4a.flush();
         }
     }
 
     public static void e(String tag, String msg) {
         if (mEnableLog) {
             Log4a.e(tag, msg);
+            Log4a.flush();
         }
     }
 
     public static void e(String tag, Throwable t) {
         if (mEnableLog) {
             Log4a.e(tag, t);
+            Log4a.flush();
         }
     }
 
