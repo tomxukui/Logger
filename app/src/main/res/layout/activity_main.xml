@@ -20,6 +20,7 @@
             android:id="@+id/btn_d_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
             android:text="debug-text" />
 
         <Button
