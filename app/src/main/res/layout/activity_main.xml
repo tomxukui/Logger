@@ -11,6 +11,12 @@
         android:orientation="vertical">
 
         <Button
+            android:id="@+id/btn_testOfficeDemo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="测试官方demo" />
+
+        <Button
             android:id="@+id/btn_d_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

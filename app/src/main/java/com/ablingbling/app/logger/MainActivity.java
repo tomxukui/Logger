@@ -17,6 +17,16 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        findViewById(R.id.btn_testOfficeDemo).setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, TestOfficeDemoActivity.class));
+            }
+
+        });
+
         findViewById(R.id.btn_d_text).setOnClickListener(new View.OnClickListener() {
 
             @Override
